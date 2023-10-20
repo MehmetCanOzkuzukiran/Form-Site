@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../css/signup.css">
+  </head>
+
+  <body>
+    <nav class="main-nav">
+      <h2 class="brand">Sign Up</h2>
+    </nav>
+    <div class="page">
+      <div class="box">
+      <form class="login-box">
+        <div class="input-group">
+
+          <label class="user-input-label" for="username">Username:</label>
+          <input type="text" class="user-input" id="username" name="username" required /><br />
+        </div>
+          <div class="input-group">
+
+            <label class="user-input-label" for="email">Email:</label>
+            <input type="email" class="user-input" id="email" name="email" required /><br />
+          </div>
+          <div class="input-group">
+
+            <label class="user-input-label" for="password">Password:</label>
+            <input type="password" class="user-input" id="password" name="password" required /><br />
+          </div>
+          <div class="input-group">
+
+            <label class="user-input-label" for="confirm-password">Confirm Password:</label>
+            <input
+              class="user-input"
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              required
+              /><br />
+          </div>
+         
+          <div class="buttons">
+            <input class="button" type="submit" value="Submit" />
+          </div>
+        </form>
+        <div class="buttons">
+          <a href="../other/login.html">
+            <button class="login button">I have account</button>
+          </a>
+        </div>
+        <!--
+          <form action="processing-script.php" method="post">
+            //form fields here
+          </form>
+        -->
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- There is a bug in the show the password feature, i have no idea how to fix that (19/10/23)-->
