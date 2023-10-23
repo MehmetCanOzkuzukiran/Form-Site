@@ -1,8 +1,27 @@
 p {
   color: #333;
-  background-color: #f0f0f0;
   font-family: Arial, sans-serif;
   font-size: 16px;
   margin: 10px;
   padding: 5px;
+}
+* {
+  box-sizing: border-box;
+}
+html{
+  height: 100%;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #eee1d5;
+}
+.main-nav {
+  background-color: #064642;
+  color: #fbf2c0;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal;
 }
