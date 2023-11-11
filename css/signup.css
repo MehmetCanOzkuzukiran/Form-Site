@@ -18,6 +18,10 @@ body {
     justify-content: center;
     font-weight: normal;
 }
+.home-nav {
+    color: #fbf2c0;
+    text-decoration: none;
+}
 .page {
     width: 100%;
     height: 100%;
