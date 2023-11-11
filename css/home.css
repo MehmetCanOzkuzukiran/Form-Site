@@ -19,12 +19,61 @@ body {
 .main-nav {
   background-color: #064642;
   color: #fbf2c0;
-  font-size: 26px;
+  font-size: 32px;
   display: flex;
   align-items: center;
   justify-content: left;
   font-weight: normal;
 }
-.panel-navSticky {
+.brand {
+  margin: 25px;
+}
+.p-navSticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+.p-nav {
+  color: #fbf2c0;
+  background-color: #12504cf3;
+}
+.p-nav-inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
   
+}
+.nav-button {
+  color: #fbf2c0;
+  text-decoration: none;
+  padding: 8px 11px;
+  float: left;
+  background-color: #064642e1;
+  font-size: 22px;
+}
+.p-nav-opposite {
+  text-align: right;
+}
+.block{
+  
+}
+.tabPanes{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 70vh;
+  align-self: center;
+  background-color: rgb(207, 207, 207); 
+  grid-area: tab;
+}
+.under-part {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-areas: 
+    "none tab ";
+  margin: 0 auto;
+  justify-content: center;
+  margin: 36px;
 }

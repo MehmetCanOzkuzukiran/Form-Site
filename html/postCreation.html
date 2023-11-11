@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Creation Page</title>
+    <link rel="stylesheet" type="text/css" href="../css/postCreatin.css">
+</head>
+
+<body>
+    <nav class="main-nav">
+        <a class="home-nav" href="/home.html"> 
+          <h2  class="brand">Post Creation</h2>
+        </a>
+      </nav>
+    <div class="center-container">
+        <div class="text-container">
+            <h1>Let's Create a Form</h1>
+            <div class="select-topic-container">
+                <select class="select-topic" name="topics">
+                    <option value="0">Select Topic:</option>
+                    <optgroup label="Technology">
+                        <option value="computer">Computer</option>
+                        <option value="saab">Mobile phone</option>
+                    </optgroup>
+                    <optgroup label="Care">
+                        <option value="Health Care">Health Care</option>
+                        <option value="Make-up">Make-up</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="topic-header">
+                <textarea class="header" placeholder="Enter Title"></textarea>
+            </div>
+            <div class="text">
+                <textarea class="post-text" cols="30" rows="10" placeholder="Enter Your Form"></textarea>
+            </div>
+
+        </div>
+        <button onclick="//Back-end'e istek aticak" class="send-btn">Send</button>
+    </div>
+
+</body>
+
+</html>

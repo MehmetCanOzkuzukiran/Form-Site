@@ -1,0 +1,91 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #eee1d5;
+}
+
+textarea {
+    resize: none;
+    outline: none;
+
+}
+
+select {
+    outline: none;
+}
+
+.main-nav {
+    background-color: #064642;
+    color: #fbf2c0;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+}
+.home-nav {
+    color: #fbf2c0;
+    text-decoration: none;
+}
+.center-container h1{
+    text-align: center;
+    color: #064642;
+}
+
+
+.center-container {
+    width: 1200px;
+    height: 700px;
+    background-color: #eee1d5;
+    position: absolute;
+    left: 45%;
+    top: 40%;
+    margin-left: -500px;
+    margin-top: -200px;
+
+}
+
+.select-topic-container {
+    margin-top: -2px;
+    position: relative;
+    margin-left: -1px;
+    margin-bottom: 4px;
+}
+
+.select-topic {
+    background-color: white;
+    font-size: 20px;
+    padding: 10px 30px;
+    width:  18.6%;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.post-text {
+    width: 1194px;
+    height: 560px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+}
+.header{
+    width: 30;
+    height: 30px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 10px;
+}
+
+.send-btn {
+    width: 80px;
+    height: 40px;
+    font-size: 27px;
+    margin-top: 7px;
+    background-color: #12ad7a;
+    color: #ffffff;
+    border: none;
+    border-radius: 100px;
+    margin-left: 1100px;
+    cursor: pointer;
+}
