@@ -1,44 +1,44 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/login.css">
     <title>Login</title>
-    <link rel="stylesheet" href="../css/login.css" />
-  </head>
-
-  <body>
-    <nav class="main-nav">
-      <a class="home-nav" href="../home.html"> 
-        <h2  class="brand">Login</h2>
-      </a>
-    </nav>
-    <div class="page">
-      <div class="box">
-        <form class="login-box">
-          <div class="input-group">
-            <label class="user-input-label" for="email">Email:</label>
-            <input type="email" class="user-input" id="email" name="email" required /><br />
-          </div>
-          <div class="input-group">
-            <label class="user-input-label" for="password">Password:</label>
-            <input type="password" class="user-input" id="password" name="password" required /><br />
-          </div>
-          <div class="buttons">
-            <input class="button" type="submit" value="Login" />
-          </div>
-        </form>
-        <div class="buttons">
-          <a href="../html/signup.html">
-            <button class="signUp button">Sign Up</button>
-            </a>
-        </div>
+</head>
+<body>
+      <div class="under-nav">
+        <section class="innerpage">
+          <form>
+            <h1 class="inner-header">Login</h1>
+            <div class="inputbox">
+              <ion-icon name="mail-outline">&#x2709;</ion-icon>
+              <input type="email" required>
+              <label for="">Email</label>
+            </div>
+            <div class="inputbox">
+              <ion-icon name="lock-closed-outline"><div class="icon-lock" style="float: left">
+                <div class="lock-top-1" style="background-color: #E5E9EA"></div>
+                <div class="lock-top-2"></div>
+                <div class="lock-body" style="background-color: #E5E9EA"></div>
+                <div class="lock-hole"></div>
+              </div></ion-icon>
+              <input type="password" required>
+              <label for="">Password</label>
+            </div>
+            <div class="forget">
+              <label for=""><input type="checkbox">Remember Me</label>
+              <a href="#">Forget Password</a>
+            </div>
+            <button class="login-button">Log in</button>
+            <div class="register">
+              <p>Don't have a account <a href="/html/signup.html">Register</a></p>
+            </div>
+            <div  class="register">
+              <p><a href="../home.html">Continue Without Login</a></p>
+            </div>
+          </form>
+        </section>
       </div>
-    </div>
-      </body>
+</body>
 </html>
-
-<!--TODO
-    In my page if user click sign up in the index page,
-    the another sign up page opens, But most of the website dont use it like that. 
-    When click the sign up or login the browser stay in the index page 
-    and just a sign up or login box appers
--->
