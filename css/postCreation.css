@@ -94,3 +94,17 @@ body{
 .topic-header{
     max-width: 20%;
 }
+.home {
+    font-size: 0.9rem;
+    text-align: center;
+    margin: 25px 0 10px;
+    font-weight: 600;
+    align-self: flex-end;
+}
+.home-button{
+    color: #fff;
+    text-decoration: none;
+}
+.home p a:hover {
+    text-decoration: underline;
+}
