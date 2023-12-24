@@ -6,25 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Creation Page</title>
     <link rel="stylesheet" type="text/css" href="../css/postCreation.css">
+    <script src="../js/script.js"></script>
 </head>
 
 <body>
     <div class="innerpage">
-        <h2  class="inner-header">Post Creation</h2>
+        <h2 class="inner-header">Post Creation</h2>
         <div class="text-container">
-            <div class="topic-header inputbox">
-                <textarea class="header container" placeholder="Enter Title"></textarea>
-            </div>
-            <div class="text inputbox">
-                <textarea class="post-text container" cols="30" rows="10" placeholder="Enter Your Form"></textarea>
-            </div>
-            <button onclick="//Back-end'e istek aticak" class="send-button">Send</button>
-            <div  class="home">
+            <!-- Form with PHP action and method attributes -->
+            <!-- <form action="../php/process_post_creation.php" method="POST" novalidate> -->
+                <form novalidate>
+                <div class="topic-header inputbox">
+                    <textarea name="postTitle" class="header container" placeholder="Enter Title"></textarea>
+                </div>
+                <div class="text inputbox">
+                    <textarea name="postContent" class="post-text container" cols="30" rows="10"
+                        placeholder="Enter Your Form"></textarea>
+                </div>
+                <!-- Button container for alignment -->
+                <div class="button-container">
+                    <!-- Use the type="submit" for form submission -->
+                    <button type="submit" class="send-button">Send</button>
+                </div>
+            </form>
+            <div class="home">
                 <p><a class="home-button" href="../index.html">Continue Without Post</a></p>
-              </div>
+            </div>
         </div>
     </div>
-
 </body>
 
 </html>

@@ -51,7 +51,7 @@ body{
     font-weight: 600;
     transition: all 0.4s ease;
     align-self: flex-end;
-    
+    margin-left: auto;
 }
 .text-container{
     display: flex;
@@ -63,6 +63,7 @@ body{
 .inputbox{
     position: relative;
     border-bottom: 2px solid #fff;
+    margin-bottom: 2%;
 }
 .container::placeholder{
     position: absolute;
@@ -93,7 +94,9 @@ body{
 }
 .topic-header{
     max-width: 20%;
+    min-width: 90px;
 }
+
 .home {
     font-size: 0.9rem;
     text-align: center;
@@ -107,4 +110,8 @@ body{
 }
 .home p a:hover {
     text-decoration: underline;
+}
+.button-container {
+    display: flex;
+    align-items: flex-end;
 }

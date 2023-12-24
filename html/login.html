@@ -5,32 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/login.css">
     <title>Login</title>
-</head>
-<body>
-      <div class="under-nav">
-        <section class="innerpage">
-          <form>
-            <h1 class="inner-header">Login</h1>
-            <div class="inputbox">
-              <ion-icon name="mail-outline">&#x2709;</ion-icon>
-              <input type="email" required>
-              <label for="">Email</label>
-            </div>
-            <div class="inputbox">
-              <ion-icon name="lock-closed-outline"><div class="icon-lock" style="float: left">
+  </head>
+  <body>
+    <div class="under-nav">
+      <section class="innerpage">
+        <form onsubmit="return validateLoginForm();" action="../php/login.php" method="POST" novalidate>
+          <h1 class="inner-header">Login</h1>
+          <div class="inputbox">
+            <ion-icon name="mail-outline">&#x2709;</ion-icon>
+            <input type="email" id="email" name="email" required>
+            <label for="">Email</label>
+          </div>
+          <div class="inputbox">
+            <ion-icon name="lock-closed-outline" onclick="togglePasswordVisibility('passwordField')">
+              <div class="icon-lock" style="float: left">
                 <div class="lock-top-1" style="background-color: #E5E9EA"></div>
                 <div class="lock-top-2"></div>
                 <div class="lock-body" style="background-color: #E5E9EA"></div>
                 <div class="lock-hole"></div>
               </div></ion-icon>
-              <input type="password" required>
-              <label for="">Password</label>
+              <input type="password" id="passwordField" name="password" required>
+              <label for="" >Password</label>
             </div>
             <div class="forget">
               <label for=""><input type="checkbox">Remember Me</label>
               <a href="#">Forget Password?</a>
             </div>
-            <button class="login-button">Log in</button>
+            <button class="login-button" id="loginButton">Log in</button>
             <div class="register">
               <p>Don't have a account <a href="signup.html">Register</a></p>
             </div>
@@ -40,5 +41,6 @@
           </form>
         </section>
       </div>
-</body>
-</html>
+      <script src="../js/script.js"></script>
+    </body>
+    </html>
