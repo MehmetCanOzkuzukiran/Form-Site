@@ -14,23 +14,22 @@
         <h2 class="inner-header">Post Creation</h2>
         <div class="text-container">
             <!-- Form with PHP action and method attributes -->
-            <!-- <form action="../php/process_post_creation.php" method="POST" novalidate> -->
-                <form novalidate>
+            <form action="../php/process_post_creation.php" method="POST" novalidate>
                 <div class="topic-header inputbox">
-                    <textarea name="postTitle" class="header container" placeholder="Enter Title"></textarea>
+                    <textarea name="postTitle" class="header container" placeholder="Enter Title" required></textarea>
                 </div>
                 <div class="text inputbox">
                     <textarea name="postContent" class="post-text container" cols="30" rows="10"
-                        placeholder="Enter Your Form"></textarea>
+                        placeholder="Enter Your Post" required></textarea>
                 </div>
                 <!-- Button container for alignment -->
                 <div class="button-container">
                     <!-- Use the type="submit" for form submission -->
-                    <button type="submit" class="send-button">Send</button>
+                    <button type="submit" class="send-button">Create Post</button>
                 </div>
             </form>
             <div class="home">
-                <p><a class="home-button" href="../index.html">Continue Without Post</a></p>
+                <p><a class="home-button" href="../index.php">Continue Without Post</a></p>
             </div>
         </div>
     </div>

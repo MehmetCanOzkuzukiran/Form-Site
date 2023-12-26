@@ -98,7 +98,7 @@ $conn->close();
                     <button class="login-button">Save the changes</button>
                 </div>
                 <div  class="register">
-                    <p><a href="../index.html">Continue Without Changes</a></p>
+                    <p><a href="../index.php">Continue Without Changes</a></p>
                   </div>
             </form>
             <a href="../php/logout.php" class="logout-button">Logout</a>

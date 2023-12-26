@@ -66,28 +66,46 @@ footer{
 .p-nav-opposite {
   text-align: right;
 }
-.tabPanes{
+.tabPanes {
   list-style: none;
   margin: 0;
   padding: 0;
-  height: 70vh;
-  align-self: center;
   border: 1px solid black;
   border-radius: 45px;
   background-color: transparent;
-  backdrop-filter: blur(45px); 
-  grid-area: tab;
+  backdrop-filter: blur(45px);
+  overflow-y: auto; /* Add scrollbar if content exceeds container height */
+  display: grid;
+  justify-self: center;
+  justify-content: center;
 }
-.block p{
+
+.block {
+  width: 100%;
+  border: 1px solid #1a4a7d;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #3a3838;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+}
+.under-part{
+  margin: 36px;
+  max-width: 100%;
+  display: grid;
+  justify-self: center;
+}
+.post-content {
+  max-width: 80%;
+  border: 1px solid #1a4a7d;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
   color: #3a3838;
 }
-.under-part {
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
-  grid-template-areas: 
-    "none tab ";
-  margin: 0 auto;
-  justify-content: center;
-  margin: 36px;
+.post-container {
+  background-color: white;
+  margin-bottom: 10px; /* Adds space between posts */
 }
