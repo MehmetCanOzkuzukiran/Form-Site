@@ -1,16 +1,13 @@
-p {
-  color: #333;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  margin: 10px;
-  padding: 5px;
-}
+/* Global Styles */
 * {
   box-sizing: border-box;
 }
-html{
+
+html {
   height: 100%;
 }
+
+/* Body and Background */
 body {
   background-image: url(../backgrounds/cool-background-blue.png);
   margin: 0px;
@@ -18,11 +15,17 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  background-attachment: fixed; /* The background is fixed with regard to the viewport */
+  min-height: 100vh; /* Minimum height to cover the full viewport height */
 }
-footer{
+
+/* Footer */
+footer {
   text-align: center;
   color: #87bfed;
 }
+
+/* Main Navigation */
 .main-nav {
   background-color: transparent;
   color: #1a4a7d;
@@ -32,9 +35,12 @@ footer{
   justify-content: center;
   font-weight: normal;
 }
+
 .brand {
   margin: 25px;
 }
+
+/* Sticky Navigation */
 .p-navSticky {
   position: -webkit-sticky;
   position: sticky;
@@ -42,70 +48,149 @@ footer{
   display: flex;
   justify-content: center;
 }
+
+/* Secondary Navigation */
 .p-nav {
   border: 2px solid #1a4a7d;
   border-radius: 55px;
-  background-color: transparent;
   background-color: rgb(207, 207, 207, 0.3);
 }
+
+/* Navigation Buttons */
 .nav-button {
   color: #1a4a7d;
   font-weight: 400;
   text-decoration: none;
   padding: 8px 11px;
-  float: left;
   font-size: 22px;
   border-left: 2px solid #1a4a7d;
 }
+
+/* Inner Navigation */
 .p-nav-inner {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
 }
+
 .p-nav-opposite {
   text-align: right;
 }
+
+/* Tab Panes for Posts */
 .tabPanes {
   list-style: none;
   margin: 0;
   padding: 0;
-  border: 1px solid black;
-  border-radius: 45px;
+  border: none; /* Remove border for a cleaner look */
   background-color: transparent;
   backdrop-filter: blur(45px);
-  overflow-y: auto; /* Add scrollbar if content exceeds container height */
+  overflow-y: auto;
   display: grid;
   justify-self: center;
   justify-content: center;
 }
 
+/* Individual Block/Post Styling */
 .block {
   width: 100%;
-  border: 1px solid #1a4a7d;
-  border-radius: 10px;
+  border: none; /* Remove border for a cleaner look */
   background-color: rgba(255, 255, 255, 0.8);
   color: #3a3838;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Added padding for spacing */
+  margin-bottom: 10px; /* Added margin for spacing between posts */
+  min-width: 400px;
 }
-.under-part{
+
+/* Underneath Part Styling */
+.under-part {
   margin: 36px;
   max-width: 100%;
   display: grid;
   justify-self: center;
+  background-color: transparent;
 }
+
+/* Post Content Styling */
 .post-content {
-  max-width: 80%;
-  border: 1px solid #1a4a7d;
-  border-radius: 10px;
-  padding: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #3a3838;
+  /* existing styles */
+  padding: 15px;
+  margin-bottom: 10px; /* Adds space between posts */
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #1a4a7d;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+
+a:hover {
+  text-decoration: underline;
+}
+
+a {
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 27px;
+  color: #007bff;
+  margin: 25px 0 10px;
+  text-align: center;
+}
+
+.post-rating {
+  font-size: 16px;
+  color: #28a745;
+}
+
+.post-raters {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.post-creator {
+  font-size: 16px;
+  color: #17a2b8;
+  margin-top: 10px;
+}
+
+.post-date {
+  font-size: 14px;
+  color: #ffc107;
+  margin-top: 5px;
+}
+
+
+/* Container for Posts */
 .post-container {
   background-color: white;
-  margin-bottom: 10px; /* Adds space between posts */
+  margin-bottom: 20px; /* More space between posts */
+}
+
+/* User Info Styling */
+.user-info {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  text-align: right;
+  border-radius: 0 0 0 15px; /* Rounded corner on bottom-left */
+}
+
+/* Logout Button Styling */
+#logoutButton {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 33px;
+}
+
+#logoutButton:hover {
+  background-color: rgb(220, 53, 69, 0.5);
 }

@@ -43,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($stmt->execute()) {
                 echo "Email updated successfully!";
                 $_SESSION['current_user_email'] = $newEmail; // Update the session with the new email
+                header("Location: ../html/profile.php");
             } else {
                 echo "Error updating email: " . $conn->error;
             }
@@ -58,6 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             echo "Password updated successfully!";
+            header("Location: ../html/profile.php");
         } else {
             echo "Error updating password: " . $conn->error;
         }
@@ -89,6 +91,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (ob_get_length() === 0) {
         header("Location: ../html/profile.php");
         exit();
+    }
+    // Now, after the header is set, you can echo the messages.
+    if (isset($successMessage)) {
+        echo $successMessage;
+    } elseif (isset($errorMessage)) {
+        echo $errorMessage;
     }
 }
 

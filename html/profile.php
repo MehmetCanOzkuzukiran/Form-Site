@@ -19,10 +19,29 @@ $conn = new mysqli($servername, $username, $password_db, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+$sqluser = "SELECT profilePicture, email FROM users WHERE ID = ?";
+$stmtuser = $conn->prepare($sqluser);
 
+if (!$stmtuser) {
+    die("Error preparing statement: " . $conn->error);
+}
+
+$stmtuser->bind_param('i', $userId);
+$stmtuser->execute();
+
+$resultuser = $stmtuser->get_result();
+$rowuser = $resultuser->fetch_assoc();
+$profilePicturePath = $rowuser['profilePicture'];
+$resultAssoc = $rowuser['email'];
+
+if ($resultAssoc !== null) {
+    $currentEmail = $resultAssoc;
+} else {
+    $currentEmail = 'Not found';  // Provide a default value or handle the case where no results are returned
+}
 // Fetch current email and profile picture path from the session
-$currentEmail = isset($_SESSION['current_user_email']) ? $_SESSION['current_user_email'] : 'Not logged in';
-$profilePicturePath = isset($_SESSION['profile_picture_path']) ? $_SESSION['profile_picture_path'] : 'backgrounds/profile/UserStockPhoto1.jpg';
+/* $currentEmail = isset($_SESSION['current_user_email']) ? $_SESSION['current_user_email'] : 'Not logged in'; */
+/* $profilePicturePath = isset($_SESSION['profile_picture_path']) ? $_SESSION['profile_picture_path'] : 'backgrounds/profile/UserStockPhoto1.jpg'; */
 $leadingSlash = "/";
 $fullProfilePicturePath = $leadingSlash . $profilePicturePath;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -22,7 +22,7 @@ try {
         if (password_verify($user_password, $result['password'])) {
             $_SESSION['user_id'] = $result['ID']; // Use the actual ID from the database.
             $_SESSION['username'] = $result['username'];
-            $_SESSION['current_user_email'] = $userEmail;
+            $_SESSION['current_user_email'] = $result['email'];
 
             header("Location: ../html/profile.php"); // Redirect to the PHP file, not HTML.
             exit(); // Always call exit after headers to prevent further script execution.
