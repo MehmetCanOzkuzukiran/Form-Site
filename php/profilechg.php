@@ -24,11 +24,8 @@ if ($conn->connect_error) {
 $currentEmail = isset($_SESSION['current_user_email']) ? $_SESSION['current_user_email'] : 'Not logged in';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Sanitize user input
-    $newEmail = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $newPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
     // Check if the new email is not empty before proceeding
+    $newEmail = trim($_POST['email']);
     if (!empty($newEmail)) {
         // Check if the email already exists for another user
         $stmt = $conn->prepare("SELECT ID FROM users WHERE email = ? AND ID <> ?");
@@ -39,28 +36,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result->num_rows > 0) {
             echo "Email already in use by another account.";
         } else {
-            // Update user's email and password
-            $stmt = $conn->prepare("UPDATE users SET email = ?, password = ? WHERE ID = ?");
-            $stmt->bind_param('ssi', $newEmail, $newPassword, $userId);
+            // Update user's email
+            $stmt = $conn->prepare("UPDATE users SET email = ? WHERE ID = ?");
+            $stmt->bind_param('si', $newEmail, $userId);
 
             if ($stmt->execute()) {
-                echo "Profile updated successfully!";
-                $stmt->close(); // Close the statement here
+                echo "Email updated successfully!";
                 $_SESSION['current_user_email'] = $newEmail; // Update the session with the new email
-                header("Location: ../html/profile.php"); // Redirect to the profile page
-                exit();
             } else {
-                echo "Error updating record: " . $conn->error;
+                echo "Error updating email: " . $conn->error;
             }
         }
-    } else {
-        echo "New email cannot be empty.";
     }
-}
 
-// Close the statement outside of the conditional block
-if (isset($stmt)) {
-    $stmt->close();
+    // Check if the new password is not empty before proceeding
+    if (!empty($_POST['password'])) {
+        // Update user's password
+        $newPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $stmt = $conn->prepare("UPDATE users SET password = ? WHERE ID = ?");
+        $stmt->bind_param('si', $newPassword, $userId);
+
+        if ($stmt->execute()) {
+            echo "Password updated successfully!";
+        } else {
+            echo "Error updating password: " . $conn->error;
+        }
+    }
+
+    // Handle file upload (profile picture)
+    if (isset($_FILES['profilePicture']) && $_FILES['profilePicture']['error'] == UPLOAD_ERR_OK) {
+        $targetDir = "../backgrounds/profile/";
+        $targetFile = $targetDir . basename($_FILES["profilePicture"]["name"]);
+
+        // Move the uploaded file to the specified directory
+        if (move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $targetFile)) {
+            // Update your database with the new file path if needed
+            // Example: $filePath = "backgrounds/profile/" . basename($_FILES["profilePicture"]["name"]);
+            echo "Profile picture uploaded successfully!";
+            // After move_uploaded_file
+            $filePath = "backgrounds/profile/" . basename($_FILES["profilePicture"]["name"]);
+            $_SESSION['profile_picture_path'] = $filePath;
+            // Add this SQL query to update the database
+            $updateFilePathQuery = "UPDATE users SET profilePicture = '$filePath' WHERE ID = $userId";
+            $conn->query($updateFilePathQuery);
+            header("Location: ../html/profile.php");
+        } else {
+            echo "Error uploading profile picture.";
+        }
+    }
+
+    // Redirect to the profile page only if there is no output (no errors)
+    if (ob_get_length() === 0) {
+        header("Location: ../html/profile.php");
+        exit();
+    }
 }
 
 $conn->close();

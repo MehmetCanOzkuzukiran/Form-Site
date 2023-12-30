@@ -58,24 +58,25 @@ function validateLoginForm() {
     });
   }
   
-  function previewImage() {
-    var fileInput = document.getElementById('getFile');
+  function previewImage(input) {
+    var fileInput = input;
     var image = document.getElementById('previewImage');
-  
+
     // Check if a file is selected
     if (!fileInput.files || !fileInput.files[0]) {
-      alert("Please select a file");
-      return;
+        alert("Please select a file");
+        return;
     }
-  
+
     var reader = new FileReader();
-  
+
     reader.onload = function (e) {
-      image.src = e.target.result;
+        image.src = e.target.result;
     };
-  
+
     reader.readAsDataURL(fileInput.files[0]);
-  }
+}
+
   
   function togglePasswordVisibility(inputId, confirmId) {
     var passwordInput = document.getElementById(inputId);

@@ -20,25 +20,70 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch and display the current email
-$currentEmail = '';
-
-if (isset($_SESSION['current_user_email'])) {
-    $currentEmail = $_SESSION['current_user_email'];
-} else {
-    // Fetch user information from the database based on the user ID
-    $getUserInfoQuery = "SELECT Email FROM Users WHERE ID = $userId";
-    $result = $conn->query($getUserInfoQuery);
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $currentEmail = $row['Email'];
-        $_SESSION['current_user_email'] = $currentEmail; // Cache the email in the session
-    }
-}
-
+// Fetch current email and profile picture path from the session
+$currentEmail = isset($_SESSION['current_user_email']) ? $_SESSION['current_user_email'] : 'Not logged in';
+$profilePicturePath = isset($_SESSION['profile_picture_path']) ? $_SESSION['profile_picture_path'] : 'backgrounds/profile/UserStockPhoto1.jpg';
+$leadingSlash = "/";
+$fullProfilePicturePath = $leadingSlash . $profilePicturePath;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Rest of your existing code for updating email and password
+    // Sanitize user input
+    $newEmail = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $newPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    // Check if the new email is not empty before proceeding
+    if (!empty($newEmail)) {
+        // Check if the email already exists for another user
+        $stmt = $conn->prepare("SELECT ID FROM users WHERE email = ? AND ID <> ?");
+        $stmt->bind_param('si', $newEmail, $userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            echo "Email already in use by another account.";
+        } else {
+            // Update user's email
+            $stmt = $conn->prepare("UPDATE users SET email = ? WHERE ID = ?");
+            $stmt->bind_param('si', $newEmail, $userId);
+
+            if ($stmt->execute()) {
+                echo "Email updated successfully!";
+                $_SESSION['current_user_email'] = $newEmail; // Update the session with the new email
+            } else {
+                echo "Error updating email: " . $conn->error;
+            }
+        }
+    }
+
+    // Check if the new password is not empty before proceeding
+    if (!empty($_POST['password'])) {
+        // Update user's password
+        $stmt = $conn->prepare("UPDATE users SET password = ? WHERE ID = ?");
+        $stmt->bind_param('si', $newPassword, $userId);
+
+        if ($stmt->execute()) {
+            echo "Password updated successfully!";
+        } else {
+            echo "Error updating password: " . $conn->error;
+        }
+    }
+
+    // Handle file upload (profile picture)
+    if (isset($_FILES['profilePicture']) && $_FILES['profilePicture']['error'] == UPLOAD_ERR_OK) {
+        $targetDir = "../backgrounds/profile/";
+        $targetFile = $targetDir . basename($_FILES["profilePicture"]["name"]);
+
+        // Move the uploaded file to the specified directory
+        if (move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $targetFile)) {
+            // Update the session with the new profile picture path
+            $_SESSION['profile_picture_path'] = "backgrounds/profile/" . basename($_FILES["profilePicture"]["name"]);
+            echo "Profile picture uploaded successfully!";
+        } else {
+            echo "Error uploading profile picture.";
+        }
+    }
+
+    header("Location: ../html/profile.php"); // Redirect to the profile page
+    exit();
 }
 
 $conn->close();
@@ -55,12 +100,11 @@ $conn->close();
 <body>
         <section class="innerpage">
             <h1 class="inner-header">My Profile</h1>
-            <form  action="../php/profilechg.php" method="POST" class="info" novalidate>
-                <div class="img-box">
-                    <img class="image" id="previewImage" src="/backgrounds/UserStockPhoto1.jpg" alt="UserImage">
-                    <button style="display:block;width:120px; height:30px; "   onclick="previewImage()">Change My Photo</button>
-                    <input type='file' id="getFile" style="display:none">
-                </div>
+            <form action="../php/profilechg.php" method="POST" class="info" novalidate enctype="multipart/form-data">
+            <div class="img-box">
+            <img class="image" id="previewImage" src="<?php echo htmlspecialchars($fullProfilePicturePath) . '?version=' . uniqid(); ?>" alt="UserImage">
+                <input type="file" id="getFile" name="profilePicture" onchange="previewImage(this)">
+            </div>
                 <div class="input-group">
                     <p style="color: #fff; margin: 10px;">Current Email: <?php echo htmlspecialchars($currentEmail); ?></p>
 
