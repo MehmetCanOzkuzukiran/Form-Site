@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 $postId = $_GET['post_id'];
 
 // Fetch post details using prepared statement
-$sqlPost = "SELECT posts.Title, posts.Content, posts.DatePosted, users.Username, posts.totalRating, posts.ratingCount
+$sqlPost = "SELECT posts.Title, posts.Content, posts.DatePosted, users.Username, posts.totalRating, posts.ratingCount, users.profilePicture
             FROM posts 
             JOIN users ON posts.userID = users.ID 
             WHERE posts.postID = ?";
@@ -33,10 +33,13 @@ if ($resultPost->num_rows > 0) {
     $postUsername = $rowPost['Username'];
     $totalRating = $rowPost['totalRating'];
     $ratingCount = $rowPost['ratingCount'];
+    $profilePicture = $rowPost['profilePicture'];
 } else {
     echo "Post not found.";
     exit();
 }
+$leadingSlash = "/";
+$fullProfilePicturePath = $leadingSlash . $profilePicture;
 
 // Check if the user has already rated the post
 if (isset($_SESSION['user_id'])) {
@@ -57,7 +60,7 @@ if (isset($_SESSION['user_id'])) {
 }
 
 // Fetch comments for the post using prepared statement
-$sqlComments = "SELECT comments.CommentID, comments.Content, comments.DateCommented, users.Username, comments.UserID 
+$sqlComments = "SELECT comments.CommentID, comments.Content, comments.DateCommented, users.Username, comments.UserID, users.profilePicture 
                 FROM comments 
                 JOIN users ON comments.UserID = users.ID 
                 WHERE comments.PostID = ?";
@@ -143,10 +146,14 @@ $conn->close();
     <div class="post-container">
         <div class="post">
             <h2 class="post-title"><?php echo htmlspecialchars($postTitle); ?></h2>
-            <p class="post-meta">Posted by <?php echo htmlspecialchars($postUsername); ?> on <?php echo htmlspecialchars($postDate); ?></p>
-            <p class="post-content"><?php echo htmlspecialchars($postContent); ?></p>
-            <p class="post-rating">Average Rating: <?php echo number_format($totalRating / ($ratingCount > 0 ? $ratingCount : 1), 1); ?> (<?php echo $ratingCount; ?> ratings)</p>
-            
+            <div class="in-post-area">
+                <div class="user-area">
+                    <img class="post-avatar" id="previewImage" src="<?php echo htmlspecialchars($fullProfilePicturePath) . '?version=' . uniqid(); ?>" alt="UserImage">
+                    <p class="post-meta">By <?php echo htmlspecialchars($postUsername); ?> on <?php echo htmlspecialchars($postDate); ?></p>
+                    <p class="post-rating">Average Rating: <?php echo number_format($totalRating / ($ratingCount > 0 ? $ratingCount : 1), 1); ?> (<?php echo $ratingCount; ?> ratings)</p>
+                </div>
+                <p class="post-content"><?php echo htmlspecialchars($postContent); ?></p>
+            </div>
             <!-- Rating form -->
             <form action="../html/post.php?post_id=<?php echo $postId; ?>" method="POST">
                 <label for="rating">Rate this post:</label>
@@ -162,29 +169,33 @@ $conn->close();
         </div>
 
         <div class="comments">
-            <h3>Comments:</h3>
+            <h3 class="comment-section">Comments:</h3>
             <?php
             foreach ($comments as $comment) {
                 echo "<div class='comment'>";
-                echo "<p class='comment-username'>" . (isset($comment['Username']) ? htmlspecialchars($comment['Username']) : 'Anonymous') . "</p>";
-                echo "<p class='comment-date'>" . (isset($comment['DateCommented']) ? 'commented on: ' . htmlspecialchars($comment['DateCommented']) : '') . "</p>";
-                echo "<p class='comment-content'>" . (isset($comment['Content']) ? htmlspecialchars($comment['Content']) : '') . "</p>";
-
-                // Add delete button if the comment belongs to the logged-in user
+                echo "<div class='comment-user'>";
+                echo "<img class='comment-avatar' src='/" . (htmlspecialchars($comment['profilePicture']) . "'>");
+                echo "<p class='comment-username comment-insections'>" . (isset($comment['Username']) ? 'created by:' . htmlspecialchars($comment['Username']) : 'Anonymous') . "</p>";
+                echo "<p class='comment-date comment-insections'>" . (isset($comment['DateCommented']) ? 'commented on: ' . htmlspecialchars($comment['DateCommented']) : '') . "</p>";
+                echo "</div>";
+                echo "<p class='comment-content comment-insections'>" . (isset($comment['Content']) ? htmlspecialchars($comment['Content']) : '') . "</p>";
                 if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $comment['UserID']) {
                     echo "<form action='../php/delete_comment.php' method='POST'>";
                     echo "<input type='hidden' name='comment_id' value='{$comment['CommentID']}'>";
                     echo "<button type='submit' class='delete-button'>Delete</button>";
                     echo "</form>";
                 } else {
-                    echo "<p>No comments yet.</p>";
                 }
-
                 echo "</div>";
+                
+                // Add delete button if the comment belongs to the logged-in user
+                
             }
+            if(!isset($comment['UserID']))
+                echo "<p>You didn't comments yet.</p>";
             ?>
 
-            <h3>Add a Comment:</h3>
+            <h3 class="add-comment">Add a Comment:</h3>
             <form action="../php/process_comment.php" method="POST">
                 <textarea name="commentContent" placeholder="Type your comment here"></textarea>
                 <input type="hidden" name="postId" value="<?php echo $postId; ?>">

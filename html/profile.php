@@ -115,11 +115,12 @@ $conn->close();
     <link rel="stylesheet" href="../css/profile.css">
     <title>Document</title>
     <script src="../js/script.js"></script>
+    <script src="../js/validateEmail.js"></script>
 </head>
 <body>
         <section class="innerpage">
             <h1 class="inner-header">My Profile</h1>
-            <form action="../php/profilechg.php" method="POST" class="info" novalidate enctype="multipart/form-data">
+            <form action="../php/profilechg.php" method="POST" class="info" onsubmit="return validateForm()" novalidate enctype="multipart/form-data" >
             <div class="img-box">
             <img class="image" id="previewImage" src="<?php echo htmlspecialchars($fullProfilePicturePath) . '?version=' . uniqid(); ?>" alt="UserImage">
                 <input type="file" id="getFile" name="profilePicture" onchange="previewImage(this)">
@@ -129,7 +130,7 @@ $conn->close();
 
                     <div class="inputbox">
                         <ion-icon name="mail-outline">&#x2709;</ion-icon>
-                        <input type="email" name="email" required>
+                        <input type="email" id="emailField" name="email" required>
                         <label for="">Change My Email</label>
                     </div>
                     <div class="inputbox">

@@ -1,3 +1,6 @@
+*{
+  box-sizing: border-box;
+}
 body {
     font-family: 'Arial', sans-serif;
     background-color: #eceff1;
@@ -11,7 +14,9 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
   }
+
   
   .container {
     background-color: #fff;
@@ -38,7 +43,7 @@ body {
     width: 100%;
     padding: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 33px;
     background-color: #5c6bc0;
     color: white;
     cursor: pointer;
@@ -52,4 +57,175 @@ body {
     color: red;
     font-size: 0.9em;
   }
+  .post-title {
+    grid-area: title;
+  }
+  .post-rating {
+    grid-area: rating;
+  }
+  .post-avatar{
+    grid-area: avatar;
+    justify-self:center;
+  }
+  .post-meta{
+    grid-area: postmeta;
+  }
+  .post-content{
+    grid-area: content;
+  }
+  .post-rating{
+    grid-area: rating;
+  }
+  .user-area{
+    grid-area: userarea;
+  }
+  .post-container {
+    max-width: 78%; 
+    background-color: #ffffff; 
+    border-radius: 6px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); 
+    padding: 20px; 
+    margin: 20px auto; 
+    font-family: 'Arial', sans-serif;
+  }
+  .in-post-area{
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    grid-template-areas: "userarea content";
+  }
+  .user-area{
+    display: grid;
+    align-content: flex-start;
+    grid-template-areas: "avatar" "postmeta" "rating";
+    background-color: #f5f5f5;
+  }
+  .post-header {
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 20px; 
+  }
+  .post-avatar {
+    flex-shrink: 0;
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%; 
+    background-color: #ccc; 
+    background-size: cover; 
+    margin-right: 0px;
+  }
+  .post-meta {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9em;
+  }
   
+  .post-title {
+    font-size: 2em; 
+    font-weight: bold; 
+    color: #333; 
+    margin-bottom: 10px; 
+  }
+  
+  .post-content {
+    font-size: 1em; 
+    margin: 0;
+    border:1px solid #ffffff3f;
+    background-color: #a0a0a049;
+    padding: 2%;
+  }
+  
+  .post-rating {
+    font-size: 0.9em; 
+    color: #777;
+  }
+  .comment-username{
+    grid-area: commentusername;
+    justify-self: end;
+  }
+  .comment-date{
+    grid-area: commentdate;
+    justify-self: end;
+  }
+  .comment-insections{
+    background-color: #f5f5f5;
+    border-radius: 55px;
+    word-wrap: break-word;
+    text-align: center;
+  }
+  .comment-username, .comment-date{
+    padding: 4px;
+    /* background-color: #d1d1d1; */
+    border-radius: 5px;
+    text-align: center;
+    justify-self: center;
+  }
+  .comment-content{
+    grid-area: commentcontent;
+    padding: 10px;
+    background-color: #ffffff; 
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+  }
+  .comment-avatar{
+    flex-shrink: 0;
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    background-color: #ccc; 
+    background-size: cover; 
+    margin-right: 0px;
+    grid-area: commentavatar;
+    justify-self: center;
+  }
+  .comment-user{
+    grid-area: commentuser;
+    display: grid;
+    align-content: flex-start;
+    grid-template-areas: "commentavatar" "commentusername" "commentdate";
+
+  }
+  .comment {
+    background-color: #bbb8d7;
+    border-radius: 9px;
+    gap: 10px;
+    padding: 10px;
+    justify-content: space-between; 
+    margin: 5% 0%;
+    margin-top: 0;
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    grid-template-areas: "commentuser commentcontent";
+  }
+  
+  .home-button{
+    font-size: larger;
+    text-decoration: 0;
+    color: #1348ac;
+    font-weight: 600;
+  }
+  .home-button:hover{
+    text-decoration: underline;
+  }
+  .comment-section{
+    background-color: #101024b9;
+    color: #f5f5f5;
+    text-align: center;
+    height:4dvh;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+  }
+  .add-comment{
+    color: #f5f5f5;
+    background-color: #000a3db9;
+    text-align: center;
+    height:3dvh;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+  }
+  textarea{
+    width: 100%;
+    height: 10dvh;
+  }
+  footer{
+    text-align: center;
+  }

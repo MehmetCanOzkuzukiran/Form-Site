@@ -27,7 +27,7 @@ footer {
 
 /* Main Navigation */
 .main-nav {
-  background-color: transparent;
+  background-color:rgba(255, 255, 255, 0.5);
   color: #1a4a7d;
   font-size: 32px;
   display: flex;
@@ -47,6 +47,7 @@ footer {
   top: 0;
   display: flex;
   justify-content: center;
+  margin: 2% 0%;
 }
 
 /* Secondary Navigation */
@@ -94,7 +95,7 @@ footer {
 
 /* Individual Block/Post Styling */
 .block {
-  width: 100%;
+  width: 70dvw;
   border: none; /* Remove border for a cleaner look */
   background-color: rgba(255, 255, 255, 0.8);
   color: #3a3838;
@@ -119,6 +120,7 @@ footer {
 /* Post Content Styling */
 .post-content {
   /* existing styles */
+  width: 100%;
   padding: 15px;
   margin-bottom: 10px; /* Adds space between posts */
   background-color: rgba(255, 255, 255, 0.9);
@@ -141,26 +143,59 @@ a {
   text-align: center;
 }
 
+h2 > a{
+  grid-area: title;
+  justify-self: left;
+}
+
 .post-rating {
+  grid-area: rating;
   font-size: 16px;
   color: #28a745;
 }
 
 .post-raters {
+  grid-area: raters;
   font-size: 14px;
   color: #6c757d;
 }
 
 .post-creator {
+  grid-area: creator;
   font-size: 16px;
   color: #17a2b8;
   margin-top: 10px;
 }
+.post-avatar{
+  flex-shrink: 0;
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%; 
+    background-color: #ccc; 
+    background-size: cover; 
+    margin-right: 0px;
+    grid-area: postavatar;
+    justify-self: center;
+}
 
 .post-date {
+  grid-area: date;
   font-size: 14px;
-  color: #ffc107;
+  color: #e1644e;
   margin-top: 5px;
+}
+
+.post-user{
+  grid-area: postuser;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: "postavatar creator" "postavatar date";
+}
+
+.post-content{
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr 2fr;
+  grid-template-areas: "title rating raters postuser";
 }
 
 

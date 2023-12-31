@@ -57,7 +57,7 @@
                     die("Connection failed: " . $conn->connect_error);
                 }
 
-                $sql = "SELECT posts.PostID, posts.Title, posts.DatePosted, users.Username, posts.totalRating, posts.ratingCount
+                $sql = "SELECT posts.PostID, posts.Title, posts.DatePosted, users.Username, posts.totalRating, posts.ratingCount, users.profilePicture
                         FROM posts 
                         JOIN users ON posts.UserID = users.ID
                         ORDER BY posts.DatePosted DESC";
@@ -72,8 +72,11 @@
                         echo "<h2 class='post-title'><a href='/html/post.php?post_id={$row['PostID']}'>{$row['Title']}</a></h2>";
                         echo "<p class='post-rating'>Rating: {$row['totalRating']}</p>";
                         echo "<p class='post-raters'>{$row['ratingCount']} people rated</p>";
+                        echo "<div class='post-user'>";
+                        echo "<img class='post-avatar' src='/" . (htmlspecialchars($row['profilePicture']) . "'>");
                         echo "<p class='post-creator'>Created by {$row['Username']}</p>";
                         echo "<p class='post-date'>Created on {$row['DatePosted']}</p>";
+                        echo "</div>";
                         echo "</div>";
                     }
                     echo "</div>";
