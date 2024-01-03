@@ -3,7 +3,9 @@ function validateForm() {
     var emailValue = emailField.value.trim();
 
     // Check if the email is empty or not a valid email address
-    if (emailValue === !strValue || !isValidEmail(emailValue)) {
+    if (emailValue === ""){
+        return true;
+    } else if (!isValidEmail(emailValue)) {
         alert("Please provide a valid email address.");
         return false; // Prevent form submission
     }
@@ -25,7 +27,6 @@ function isValidEmail(email) {
         // If correction is successful, update the email field
         if (correctedEmail) {
             alert("Email corrected to: " + correctedEmail);
-            document.getElementById('emailField').value = correctedEmail;
         } else {
             return false; // Correction failed, return false
         }
@@ -38,7 +39,7 @@ function isValidEmail(email) {
 function tryCorrectEmail(email) {
     // Example: Append a default domain if none is provided
     if (!/@/.test(email)) {
-        return alert(email + '@example.com');
+        return email + '@example.com';
     }
 
     // Add more correction logic as needed

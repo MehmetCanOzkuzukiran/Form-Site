@@ -26,7 +26,11 @@ $currentEmail = isset($_SESSION['current_user_email']) ? $_SESSION['current_user
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the new email is not empty before proceeding
     $newEmail = trim($_POST['email']);
-    if (!empty($newEmail)) {
+    
+    // Validate email format
+    if (!filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
+        header("Location: ../html/profile.php");
+    } else {
         // Check if the email already exists for another user
         $stmt = $conn->prepare("SELECT ID FROM users WHERE email = ? AND ID <> ?");
         $stmt->bind_param('si', $newEmail, $userId);
