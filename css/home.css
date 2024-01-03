@@ -1,4 +1,3 @@
-/* Global Styles */
 * {
   box-sizing: border-box;
 }
@@ -7,7 +6,6 @@ html {
   height: 100%;
 }
 
-/* Body and Background */
 body {
   background-image: url(../backgrounds/cool-background-blue.png);
   margin: 0px;
@@ -15,8 +13,8 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-attachment: fixed; /* The background is fixed with regard to the viewport */
-  min-height: 100vh; /* Minimum height to cover the full viewport height */
+  background-attachment: fixed; 
+  min-height: 100vh;
 }
 
 /* Footer */
@@ -228,4 +226,60 @@ h2 > a{
 
 #logoutButton:hover {
   background-color: rgb(220, 53, 69, 0.5);
+}
+
+@media (max-width: 768px) {
+  .nav-button {
+      font-size: 18px; /* Decrease font size for smaller screens */
+  }
+
+  .block {
+      width: 90vw; /* Adjust width for better responsiveness */
+      min-width: auto; /* Remove min-width for better responsiveness */
+  }
+
+  .user-info {
+      padding: 5px; /* Adjust padding for better display on smaller screens */
+  }
+
+  #logoutButton {
+      padding: 5px 8px; /* Adjust padding for better display on smaller screens */
+  }
+
+  .post-content {
+      grid-template-rows: 1fr; /* Adjust grid layout for better responsiveness */
+      grid-template-areas: "title" "rating" "raters" "postuser"; /* Adjust grid layout for better responsiveness */
+      grid-template-columns: 1fr;
+      align-items: center;
+      justify-items: center;
+  }
+
+  .post-user {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+      "postavatar"
+      "creator"
+      "date";
+  }
+
+  .post-content {
+      padding: 15px; /* Increase padding for better spacing on smaller screens */
+  }
+  .post-creator{
+    justify-self: center;
+  }
+  .post-date{
+    justify-self: center;
+  }
+}
+
+/* Tablets and larger devices (769px and up) */
+@media (min-width: 769px) {
+  .block {
+      width: 70vw; /* Adjust width for better responsiveness */
+  }
+
+  .nav-button {
+      font-size: 22px; /* Adjust font size for larger screens */
+  }
 }

@@ -113,11 +113,16 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/mainNav.css">
     <title>Document</title>
     <script src="../js/script.js"></script>
     <script src="../js/validateEmail.js"></script>
 </head>
 <body>
+        <nav class="main-nav">
+            <h1 class="brand">Welcome to My Forum</h1>
+        </nav>
+        <div class="under-part">
         <section class="innerpage">
             <h1 class="inner-header">My Profile</h1>
             <form action="../php/profilechg.php" method="POST" class="info" onsubmit="return validateForm()" novalidate enctype="multipart/form-data" >
@@ -167,5 +172,6 @@ $conn->close();
             </form>
             <a href="../php/logout.php" class="logout-button">Logout</a>
         </section>
+        </div>
 </body>
 </html>

@@ -11,16 +11,21 @@ body{
     background-position: center;
     background-size: cover;
     height: 100vh;
+    background-attachment: fixed;
+    
+}
+.under-part{
+    padding-top: 4%;
     display: flex;
     align-items: center;
     justify-content: center;
-
+    height: 80dvh;
 }
 
 .innerpage{
     position: relative;
     width: 65%;
-    height: 80%;
+    height: 100%;
     background-color: transparent;
     border: 2px solid rgb(255, 255, 255,0.5);
     border-radius: 20px;
@@ -115,3 +120,34 @@ body{
     display: flex;
     align-items: flex-end;
 }
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 769px) {
+    .innerpage {
+        width: 80%; /* Slightly narrower on medium screens */
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .innerpage {
+        width: 65%; /* Original width for large screens */
+        margin: 0 auto; /* Centering if needed */
+    }
+    .send-button{
+        max-width: 105px;
+    }
+}
+
+/* Additional responsiveness for typography, images, etc. */
+@media (max-width: 768px) {
+    body {
+        font-size: 0.9em; /* Smaller font size on small screens */
+    }
+
+    .innerpage {
+        padding: 10px; /* Less padding on smaller screens */
+    }
+    .send-button{
+        width: 65px;
+    }
+}   

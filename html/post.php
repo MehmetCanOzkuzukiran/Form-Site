@@ -138,11 +138,14 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Details</title>
     <link rel="stylesheet" href="../css/post.css">
+    <link rel="stylesheet" href="../css/mainNav.css">
 </head>
 
 <body>
     <!-- Your existing navigation code -->
-
+    <nav class="main-nav">
+        <h1 class="brand">Welcome to My Forum</h1>
+    </nav>
     <div class="post-container">
         <div class="post">
             <h2 class="post-title"><?php echo htmlspecialchars($postTitle); ?></h2>
