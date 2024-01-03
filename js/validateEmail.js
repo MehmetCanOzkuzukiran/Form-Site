@@ -3,7 +3,7 @@ function validateForm() {
     var emailValue = emailField.value.trim();
 
     // Check if the email is empty or not a valid email address
-    if (emailValue === '' || !isValidEmail(emailValue)) {
+    if (emailValue === !strValue || !isValidEmail(emailValue)) {
         alert("Please provide a valid email address.");
         return false; // Prevent form submission
     }
@@ -38,7 +38,7 @@ function isValidEmail(email) {
 function tryCorrectEmail(email) {
     // Example: Append a default domain if none is provided
     if (!/@/.test(email)) {
-        return email + '@example.com';
+        return alert(email + '@example.com');
     }
 
     // Add more correction logic as needed
