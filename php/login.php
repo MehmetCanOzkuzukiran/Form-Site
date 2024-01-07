@@ -9,6 +9,7 @@ $dbname = "webpagetest";
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
 
     $user_email = $_POST['email'];
     $user_password = $_POST['password'];
@@ -23,6 +24,11 @@ try {
             $_SESSION['user_id'] = $result['ID']; // Use the actual ID from the database.
             $_SESSION['username'] = $result['username'];
             $_SESSION['current_user_email'] = $result['email'];
+
+            if(isset($_REQUEST['rememberme'])){
+                setcookie('emailid', urlencode($_POST['email']), time() + 20, "/"); // 20 seconds
+                setcookie('pswd',$_POST['password'], time() + 20, "/"); // 20 seconds
+            }
 
             header("Location: ../html/profile.php"); // Redirect to the PHP file, not HTML.
             exit(); // Always call exit after headers to prevent further script execution.
