@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum</title>
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="js/search.js"></script>
 </head>
 
 <body>
@@ -34,16 +37,20 @@
                     <?php
                     // Display login and signup if the user is not logged in
                     if (!isset($_SESSION['user_id'])) {
-                    ?>
+                        ?>
                         <a class="nav-button" href="html/login.html">Login</a>
                         <a class="nav-button" href="html/signup.html">Sign Up</a>
-                    <?php } ?>
+                        <?php } ?>
+                    </div>
                 </div>
+            </nav>
+        </div>
+        <div class="under-part">
+            <div class="search-bar">
+            <input type="text" class="input" id="searchInput" placeholder="search">
+            <i class="fa fa-search"></i>
             </div>
-        </nav>
-    </div>
-    <div class="under-part">
-        <ul class="tabPanes">
+            <ul class="tabPanes">
             <div class="block">
                 <?php
                 $servername = "localhost";
@@ -89,6 +96,8 @@
             </div>
         </ul>
     </div>
+    <script src="js/stickyNav.js"></script>
+    
 </body>
 
 <footer>&copy; 2023 forum. All rights reserved.</footer>

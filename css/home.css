@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  background-image: url(../backgrounds/cool-background-blue.png);
+  background-image: url(../backgrounds/DALL·E\ 2024-01-08\ 14.37.20\ -\ Create\ a\ subtle\ and\ unobtrusive\ background\ image\ for\ a\ website\ with\ a\ soft\,\ abstract\ gradient\ in\ pastel\ colors.\ The\ background\ should\ not\ have\ any\ cen.png);
   margin: 0px;
   padding: 0px;
   background-repeat: no-repeat;
@@ -32,6 +32,8 @@ footer {
   align-items: center;
   justify-content: center;
   font-weight: normal;
+  position: relative;
+  z-index: 2; /* this make main-nav can top of the z-index: < 2; */
 }
 
 .brand {
@@ -46,6 +48,10 @@ footer {
   display: flex;
   justify-content: center;
   margin: 2% 0%;
+  z-index: 1;
+}
+.p-navSticky.sticky {
+  background-color: rgb(254 236 220); 
 }
 
 /* Secondary Navigation */
@@ -69,6 +75,7 @@ footer {
 .p-nav-inner {
   display: flex;
   align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   width: 100%;
 }
@@ -113,6 +120,7 @@ footer {
   display: grid;
   justify-self: center;
   background-color: transparent;
+  z-index: 0;
 }
 
 /* Post Content Styling */
@@ -201,6 +209,8 @@ h2 > a{
 .post-container {
   background-color: white;
   margin-bottom: 20px; /* More space between posts */
+  position: relative;
+  z-index: 1;
 }
 
 /* User Info Styling */
@@ -212,6 +222,7 @@ h2 > a{
   background-color: rgba(255, 255, 255, 0.5);
   text-align: right;
   border-radius: 0 0 0 15px; /* Rounded corner on bottom-left */
+  z-index: 3;
 }
 
 /* Logout Button Styling */
@@ -227,7 +238,53 @@ h2 > a{
 #logoutButton:hover {
   background-color: rgb(220, 53, 69, 0.5);
 }
+.search-bar{
+  background-color: #eee;
+  width: 330px;
+  height: 50px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 25px;
+  justify-self: center;
+  margin-bottom: 20px;
+}
 
+
+.input {
+  width: 240px;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 18px;
+}
+
+.search-bar button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 18px 20px;
+  z-index: 2;
+}
+
+/* .fa{
+display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+} */
+.highlight {
+  background-color: yellow;
+  font-weight: bold;
+}
 @media (max-width: 768px) {
   .nav-button {
       font-size: 18px; /* Decrease font size for smaller screens */

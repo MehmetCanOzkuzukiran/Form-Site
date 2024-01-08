@@ -10,7 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: url(../backgrounds/cool-background-blue.png);
+    background: url(../backgrounds/DALL·E\ 2024-01-08\ 14.37.20\ -\ Create\ a\ subtle\ and\ unobtrusive\ background\ image\ for\ a\ website\ with\ a\ soft\,\ abstract\ gradient\ in\ pastel\ colors.\ The\ background\ should\ not\ have\ any\ cen.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -70,6 +70,9 @@ body {
   .post-meta{
     grid-area: postmeta;
   }
+  .post-delete{
+    grid-area: postdelete;
+  }
   .post-content{
     grid-area: content;
   }
@@ -96,7 +99,7 @@ body {
   .user-area{
     display: grid;
     align-content: flex-start;
-    grid-template-areas: "avatar" "postmeta" "rating";
+    grid-template-areas: "avatar" "postmeta" "rating" "postdelete";
     background-color: #f5f5f5;
   }
   .post-header {

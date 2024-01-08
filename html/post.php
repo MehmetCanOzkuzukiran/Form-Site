@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 $postId = $_GET['post_id'];
 
 // Fetch post details using prepared statement
-$sqlPost = "SELECT posts.Title, posts.Content, posts.DatePosted, users.Username, posts.totalRating, posts.ratingCount, users.profilePicture
+$sqlPost = "SELECT posts.Title, posts.Content, posts.DatePosted, users.Username, posts.totalRating, posts.ratingCount, users.profilePicture, users.ID
             FROM posts 
             JOIN users ON posts.userID = users.ID 
             WHERE posts.postID = ?";
@@ -34,6 +34,7 @@ if ($resultPost->num_rows > 0) {
     $totalRating = $rowPost['totalRating'];
     $ratingCount = $rowPost['ratingCount'];
     $profilePicture = $rowPost['profilePicture'];
+    $userIddb = $rowPost['ID'];
 } else {
     echo "Post not found.";
     exit();
@@ -155,6 +156,14 @@ $conn->close();
                     <p class="post-meta">By <?php echo htmlspecialchars($postUsername); ?> on <?php echo htmlspecialchars($postDate); ?></p>
                     <p class="post-rating">Average Rating: <?php echo number_format($totalRating / ($ratingCount > 0 ? $ratingCount : 1), 1); ?> (<?php echo $ratingCount; ?> ratings)</p>
                 </div>
+            <?php
+                if (isset($_SESSION['user_id']) && $_SESSION['user_id'] == $rowPost['ID']) {
+                    echo "<form action='../php/delete_post.php' method='POST'>";
+                    echo "<input type='hidden' name='post_id' value='$postId'>";
+                    echo "<button type='submit' class='delete-button post-delete'>Delete Post</button>";
+                    echo "</form>";
+                }
+                ?>
                 <p class="post-content"><?php echo htmlspecialchars($postContent); ?></p>
             </div>
             <!-- Rating form -->
@@ -171,7 +180,7 @@ $conn->close();
             </form>
         </div>
 
-        <div class="comments">
+        <div  class="comments">
             <h3 class="comment-section">Comments:</h3>
             <?php
             foreach ($comments as $comment) {
