@@ -72,10 +72,11 @@
                 if ($result->num_rows > 0) {
                     echo "<div class='block'>";
                     while ($row = $result->fetch_assoc()) {
+                        $averagerating = number_format($row['totalRating'] / ($row['ratingCount'] > 0 ?$row['ratingCount'] : 1), 1);
                         // Make only the post title clickable
                         echo "<div class='post-content'>";
                         echo "<h2 class='post-title'><a href='/html/post.php?post_id={$row['PostID']}'>{$row['Title']}</a></h2>";
-                        echo "<p class='post-rating'>Rating: {$row['totalRating']}</p>";
+                        echo "<p class='post-rating'>Rating: {$averagerating}</p>";
                         echo "<p class='post-raters'>{$row['ratingCount']} people rated</p>";
                         echo "<div class='post-user'>";
                         echo "<img class='post-avatar' src='/" . (htmlspecialchars($row['profilePicture']) . "'>");
