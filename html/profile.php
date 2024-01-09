@@ -88,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $targetDir = "../backgrounds/profile/";
         $targetFile = $targetDir . basename($_FILES["profilePicture"]["name"]);
 
+        
         // Move the uploaded file to the specified directory
         if (move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $targetFile)) {
             // Update the session with the new profile picture path

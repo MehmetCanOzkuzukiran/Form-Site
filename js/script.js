@@ -98,7 +98,7 @@ function checkPasswordMatch() {
   }
 }
 // Function to check login status and update UI
-function updateUIBasedOnLoginStatus() {
+/* function updateUIBasedOnLoginStatus() {
   fetch('../php/check_login_status.php')
   .then(response => response.json())
   .then(data => {
@@ -120,7 +120,7 @@ updateUIBasedOnLoginStatus();
 
 document.addEventListener('DOMContentLoaded', (event) => {
   updateUIBasedOnLoginStatus();
-});
+}); */
 
 window.addEventListener('unload', function (event) {
   // Send an asynchronous fetch request to log out the user when the tab is closed
