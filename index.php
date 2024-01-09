@@ -54,9 +54,9 @@
             <div class="block">
                 <?php
                 $servername = "localhost";
-                $username = "root";
-                $password_db = "";
-                $dbname = "webpagetest";
+                $username = "berke";
+                $password_db = "987Berker-456";
+                $dbname = "forumdb";
 
                 $conn = new mysqli($servername, $username, $password_db, $dbname);
 

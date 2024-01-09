@@ -5,9 +5,9 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['user_id'])) {
     $servername = "localhost";
-    $username = "root";
-    $password_db = "";
-    $dbname = "webpagetest";
+    $username = "berke";
+    $password_db = "987Berker-456";
+    $dbname = "forumdb";
 
     $conn = new mysqli($servername, $username, $password_db, $dbname);
 
