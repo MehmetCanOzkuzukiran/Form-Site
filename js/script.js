@@ -121,3 +121,17 @@ updateUIBasedOnLoginStatus();
 document.addEventListener('DOMContentLoaded', (event) => {
   updateUIBasedOnLoginStatus();
 });
+
+window.addEventListener('unload', function (event) {
+  // Send an asynchronous fetch request to log out the user when the tab is closed
+  fetch('../php/logout_on_tab_close.php', {
+      method: 'POST',
+      credentials: 'include',  // Include credentials (cookies) in the request
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          // You might need to send some data to identify the user, e.g., user_id
+      }),
+  });
+});

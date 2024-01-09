@@ -22,7 +22,7 @@ try {
             $hashed_password = password_hash($user_password, PASSWORD_DEFAULT);
 
             // Insert new user
-            $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
+            $stmt = $conn->prepare("INSERT INTO users (username, email, password, profilePicture) VALUES (:username, :email, :password, 'backgrounds/profile/UserStockPhoto1.jpg')");
             $stmt->bindParam(':username', $user_username);
             $stmt->bindParam(':email', $user_email);
             $stmt->bindParam(':password', $hashed_password);

@@ -137,6 +137,7 @@ $conn->close();
     <title>Post Details</title>
     <link rel="stylesheet" href="../css/post.css">
     <link rel="stylesheet" href="../css/mainNav.css">
+    <script src="../js/script.js"></script>
 </head>
 
 <body>
