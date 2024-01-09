@@ -7,11 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$userId = $_SESSION['user_id'];
-$servername = "localhost";
-$username = "berke";
-$password_db = "987Berker-456";
-$dbname = "forumdb";
+include 'connectdb.php'; //db connection
 
 $conn = new mysqli($servername, $username, $password_db, $dbname);
 
@@ -20,13 +16,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Fetch current user ID from the session
+$userId = $_SESSION['user_id'];
+
 // Fetch current email from the session
 $currentEmail = isset($_SESSION['current_user_email']) ? $_SESSION['current_user_email'] : 'Not logged in';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the new email is not empty before proceeding
     $newEmail = trim($_POST['email']);
-    
+
     // Validate email format
     if (!filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
         header("Location: ../html/profile.php");
@@ -76,15 +75,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Move the uploaded file to the specified directory
         if (move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $targetFile)) {
-            // Update your database with the new file path if needed
-            // Example: $filePath = "backgrounds/profile/" . basename($_FILES["profilePicture"]["name"]);
-            echo "Profile picture uploaded successfully!";
-            // After move_uploaded_file
+            // Update the session with the new profile picture path
             $filePath = "backgrounds/profile/" . basename($_FILES["profilePicture"]["name"]);
             $_SESSION['profile_picture_path'] = $filePath;
-            // Add this SQL query to update the database
-            $updateFilePathQuery = "UPDATE users SET profilePicture = '$filePath' WHERE ID = $userId";
-            $conn->query($updateFilePathQuery);
+
+            // Update the database with the new file path using a prepared statement
+            $stmt = $conn->prepare("UPDATE users SET profilePicture = ? WHERE ID = ?");
+            $stmt->bind_param('si', $filePath, $userId);
+
+            if ($stmt->execute()) {
+                echo "Profile picture uploaded successfully!";
+            } else {
+                echo "Error updating profile picture path: " . $conn->error;
+            }
+
             header("Location: ../html/profile.php");
         } else {
             echo "Error uploading profile picture.";
@@ -96,13 +100,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../html/profile.php");
         exit();
     }
-    // Now, after the header is set, you can echo the messages.
-    if (isset($successMessage)) {
-        echo $successMessage;
-    } elseif (isset($errorMessage)) {
-        echo $errorMessage;
-    }
 }
-
 $conn->close();
 ?>

@@ -1,10 +1,7 @@
 <?php
 session_start();
 
-$servername = "localhost";
-$username = "berke";
-$password_db = "987Berker-456";
-$dbname = "forumdb";
+include 'connectdb.php'; //db connection
 
 $conn = new mysqli($servername, $username, $password_db, $dbname);
 

@@ -4,10 +4,7 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['user_id'])) {
-    $servername = "localhost";
-    $username = "berke";
-    $password_db = "987Berker-456";
-    $dbname = "forumdb";
+    include 'connectdb.php'; //db connection
 
     $conn = new mysqli($servername, $username, $password_db, $dbname);
 

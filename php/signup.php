@@ -1,11 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "berke";
-$password = "987Berker-456";
-$dbname = "forumdb";
+include ("connectdb.php"); //db connection
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password_db);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

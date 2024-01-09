@@ -53,10 +53,7 @@
             <ul class="tabPanes">
             <div class="block">
                 <?php
-                $servername = "localhost";
-                $username = "berke";
-                $password_db = "987Berker-456";
-                $dbname = "forumdb";
+                include ("php/connectdb.php"); //db connection
 
                 $conn = new mysqli($servername, $username, $password_db, $dbname);
 
